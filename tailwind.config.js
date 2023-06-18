@@ -1,34 +1,38 @@
+const { colors } = require('tailwindcss/colors');
+const { fontFamily } = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ['class'],
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+
+    // Or if using `src` directory:
+    './src/**/*.{js,ts,jsx,tsx}',
   ],
-  mode: 'jit',
   theme: {
+    container: {
+      center: true,
+      padding: '1.5rem',
+      screens: {
+        '2xl': '1360px',
+      },
+    },
     extend: {
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
+        sans: ['var(--font-inter)', ...fontFamily.sans],
       },
       colors: {
-        'black-100': '#2B2C35',
-        'primary-blue': {
-          DEFAULT: '#2B59FF',
-          100: '#F5F8FF',
-        },
-        'secondary-orange': '#f79761',
-        'light-white': {
-          DEFAULT: 'rgba(59,60,152,0.03)',
-          100: 'rgba(59,60,152,0.02)',
-        },
-        grey: '#747A88',
-      },
-      backgroundImage: {
-        pattern: "url('/pattern.png')",
-        'hero-bg': "url('/hero-bg.png')",
+        ...colors,
+        'light-gold': '#f5bc51',
+        'dark-gold': '#533519',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
+  ],
 };
